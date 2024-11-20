@@ -86,27 +86,13 @@ const Book2Detail2 = ({ navigation }) => {
 
         {/* Conditionally Rendered Content */}
         {renderContent()}
-
-        {/* You May Also Like Section */}
+{/* You May Also Like Section */}
         <Text style={styles.sectionTitle}>You May Also Like</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.suggestions}>
           {/* Book 1 */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("BookDetails", { book: { title: "The Adventures of Sherlock Holmes" } })}
             style={styles.book}
-          >
-            <Image
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcXP8xCYlcT8BxlFPAvoqrNLWlc9gYkUylZw&s' }}
-              style={styles.bookImage}
-            />
-            <Text style={styles.bookTitle}>The Adventure of Sherlock Holmes</Text>
-            <Text style={styles.bookAuthor}>Arthur Conan Doyle</Text>
-          </TouchableOpacity>
-
-          {/* Book 2 */}
-          <TouchableOpacity
-            onPress={() => navigation.navigate("BookDetails", { book: { title: "Frankenstein" } })}
-            style={styles.book}
+            onPress={() => navigation.navigate("FictionBookDetail", { book: { title: "Frankenstein" } })}
           >
             <Image
               source={{ uri: 'https://miro.medium.com/v2/resize:fit:1024/1*iktnpmieggzfcHUS9zfpew.jpeg' }}
@@ -115,8 +101,23 @@ const Book2Detail2 = ({ navigation }) => {
             <Text style={styles.bookTitle}>Frankenstein</Text>
             <Text style={styles.bookAuthor}>Mary Shelley</Text>
           </TouchableOpacity>
+
+          {/* Book 2 */}
+          <TouchableOpacity
+            style={styles.book}
+            onPress={() => navigation.navigate("Jurassic", { book: { title: "Jurassic Park" } })}
+          >
+            <Image
+              source={{ uri: 'https://readings.com.pk/images/books/9780345538987.jpg' }}
+              style={styles.bookImage}
+            />
+            <Text style={styles.bookTitle}>Jurassic Park</Text>
+            <Text style={styles.bookAuthor}>Michael Crichton</Text>
+          </TouchableOpacity>
+
         </ScrollView>
       </View>
+
     </ScrollView>
   );
 };

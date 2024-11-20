@@ -32,7 +32,10 @@ const App = () => {
         <Stack.Screen name="Genres2Screen" component={Genres2Screen} />
         <Stack.Screen name="Book2Detail1" component={Book2Detail1} />
         <Stack.Screen name="Book2Detail2" component={Book2Detail2} />
+        <Stack.Screen name="Jurassic" component={JurassicScreen} />
       </Stack.Navigator>
+
+      
     </NavigationContainer>
   );
 };
