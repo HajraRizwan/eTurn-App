@@ -9,6 +9,10 @@ import HomeScreen from './screen/HomeScreen';
 import GenresScreen from './screen/GenresScreen';
 import FavScreen from './screen/Fav';
 import ViewAll from './screen/Viewall';
+import Genres2Screen from './screen/Genres2Screen';
+import Book2Detail1 from './screen/Mystrydet1'; 
+import Book2Detail2 from './screen/gonegirl'; 
+
 
 
 const Stack = createStackNavigator();
@@ -25,7 +29,9 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Fav" component={FavScreen} />
         <Stack.Screen name="ViewAll" component={ViewAll} />
-
+        <Stack.Screen name="Genres2Screen" component={Genres2Screen} />
+        <Stack.Screen name="Book2Detail1" component={Book2Detail1} />
+        <Stack.Screen name="Book2Detail2" component={Book2Detail2} />
       </Stack.Navigator>
     </NavigationContainer>
   );
