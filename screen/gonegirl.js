@@ -1,31 +1,36 @@
-import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Linking } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import React, { useState } from 'react';
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import * as WebBrowser from 'expo-web-browser';
 
 const Book2Detail2 = ({ navigation }) => {
-  const [selectedTab, setSelectedTab] = useState("Overview");
+  const [selectedTab, setSelectedTab] = useState('Overview');
+
+  const handleStartReading = () => {
+    WebBrowser.openBrowserAsync('https://www.google.com.pk/books/edition/The_Hound_of_the_Baskervilles/3wkOAAAAYAAJ?hl=en&gbpv=1&pg=PA2&printsec=frontcover');
+  };
 
   const renderContent = () => {
     switch (selectedTab) {
-      case "Overview":
+      case 'Overview':
         return (
           <Text style={styles.description}>
-            "Gone Girl" is a psychological thriller about the mysterious disappearance of Amy Dunne.
+            Gone Girl is a psychological thriller about the mysterious disappearance of Amy Dunne.
+            The novel delves into themes of marriage, manipulation, and media influence, revealing shocking twists.
           </Text>
         );
-      case "Book Detail":
+      case 'Book Detail':
         return (
           <View>
-            <Text style={styles.description}>Publisher: Crown Publishing Group</Text>
-            <Text style={styles.description}>Published: 2012</Text>
-            <Text style={styles.description}>Genre: Thriller, Mystery, Psychological Fiction</Text>
+            <Text style={styles.description}>Publisher: Alfred A. Knopf</Text>
+            <Text style={styles.description}>Published: 1990</Text>
+            <Text style={styles.description}>Genre: Science Fiction, Thriller</Text>
           </View>
         );
-      case "Review":
+      case 'Review':
         return (
           <Text style={styles.description}>
-            "A dark, suspenseful, and brilliantly crafted novel that keeps readers on the edge of their seats. Flynn
-            masterfully weaves a tale of deception and intrigue." - UserReview
+            “A thrilling, fast-paced novel that combines science fiction and real-world genetics. A true masterpiece.” - User123
           </Text>
         );
       default:
@@ -35,50 +40,46 @@ const Book2Detail2 = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-        <Icon name="arrow-left" size={24} color="#FF4081" />
-      </TouchableOpacity>
+      {/* Header with Back Button */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-left" size={24} color="#FF4081" />
+        </TouchableOpacity>
+        <Text style={styles.heading}>Gone Girl</Text>
+      </View>
 
       {/* Top Image */}
       <Image
-        source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYy8AE1X2Pke2zIhtwaLddRZ23e3CLSQEMug&s" }}
+        source={{ uri: 'https://bookberry.pk/wp-content/uploads/2023/07/product-imageslarge-imagesbb-96bca246-02ab-4066-8fd4-e2fbfc3dc91b-4.jpg' }}
         style={styles.image}
       />
 
       {/* Book Information */}
       <View style={styles.infoContainer}>
-        <Text style={styles.title}>Gone Girl</Text>
-        <Text style={styles.subtitle}>Thriller, Mystery</Text>
-        <Text style={styles.author}>Gillian Flynn</Text>
-        <Text style={styles.pageCount}>400 Pages</Text>
+        <Text style={styles.title}>The Girl Gone</Text>
+        <Text style={styles.subtitle}>Novel, Science Fiction</Text>
+        <Text style={styles.author}>Michael Crichton</Text>
+        <Text style={styles.pageCount}>399 Pages</Text>
 
         {/* Star Rating */}
         <View style={styles.starContainer}>
-          {Array(5)
-            .fill()
-            .map((_, i) => (
-              <Text key={i} style={styles.star}>
-                ⭐
-              </Text>
-            ))}
+          {Array(5).fill().map((_, i) => (
+            <Text key={i} style={styles.star}>⭐</Text>
+          ))}
         </View>
 
         {/* Start Reading Button */}
-        <TouchableOpacity
-          style={styles.startButton}
-          onPress={() =>
-            Linking.openURL("https://icrrd.com/public/media/15-05-2021-082725Gone-Girl-Gillian-Flynn.pdf")
-          }
-        >
+        <TouchableOpacity style={styles.startButton} onPress={handleStartReading}>
           <Text style={styles.startButtonText}>Start Reading</Text>
         </TouchableOpacity>
 
         {/* Tabs */}
         <View style={styles.tabContainer}>
-          {["Overview", "Book Detail", "Review"].map((tab) => (
+          {['Overview', 'Book Detail', 'Review'].map(tab => (
             <TouchableOpacity key={tab} onPress={() => setSelectedTab(tab)}>
-              <Text style={[styles.tab, selectedTab === tab && styles.activeTab]}>{tab}</Text>
+              <Text style={[styles.tab, selectedTab === tab && styles.activeTab]}>
+                {tab}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -89,36 +90,31 @@ const Book2Detail2 = ({ navigation }) => {
         {/* You May Also Like Section */}
         <Text style={styles.sectionTitle}>You May Also Like</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.suggestions}>
-          <View style={styles.book}>
+          {/* Book 1 */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate("BookDetails", { book: { title: "The Adventures of Sherlock Holmes" } })}
+            style={styles.book}
+          >
             <Image
-              source={{
-                uri: "https://m.media-amazon.com/images/M/MV5BYTY4OTQ0N2EtMDExMC00NTYzLTk0NmItYTRjNDYxOWU5ZDY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-              }}
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcXP8xCYlcT8BxlFPAvoqrNLWlc9gYkUylZw&s' }}
               style={styles.bookImage}
             />
-            <Text style={styles.bookTitle}>Sharp Objects</Text>
-            <Text style={styles.bookAuthor}>Gillian Flynn</Text>
-          </View>
-          <View style={styles.book}>
-            <Image
-              source={{
-                uri: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1562761513i/2459785.jpg",
-              }}
-              style={styles.bookImage}
-            />
-            <Text style={styles.bookTitle}>In the Woods</Text>
-            <Text style={styles.bookAuthor}>Tana French</Text>
-          </View>
-          <View style={styles.book}>
-            <Image
-              source={{
-                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR37i30KyFiIpnzi-21Ni25rdTnLO_kKBa-lcvs3zmPKmSgsFbwnrzcr5g2CWQvuTrA50Q&usqp=CAU",
-              }}
-              style={styles.bookImage}
-            />
-            <Text style={styles.bookTitle}>Hound Baskervilles</Text>
+            <Text style={styles.bookTitle}>The Adventure of Sherlock Holmes</Text>
             <Text style={styles.bookAuthor}>Arthur Conan Doyle</Text>
-          </View>
+          </TouchableOpacity>
+
+          {/* Book 2 */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate("BookDetails", { book: { title: "Frankenstein" } })}
+            style={styles.book}
+          >
+            <Image
+              source={{ uri: 'https://miro.medium.com/v2/resize:fit:1024/1*iktnpmieggzfcHUS9zfpew.jpeg' }}
+              style={styles.bookImage}
+            />
+            <Text style={styles.bookTitle}>Frankenstein</Text>
+            <Text style={styles.bookAuthor}>Mary Shelley</Text>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     </ScrollView>
@@ -126,34 +122,29 @@ const Book2Detail2 = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FFF" },
-  backButton: { position: "absolute", top: 20, left: 20, zIndex: 1 },
-  image: { height: 250, width: "100%" },
-  infoContainer: { padding: 10 },
-  title: { fontSize: 24, fontWeight: "bold" },
-  subtitle: { fontSize: 18, color: "#757575" },
-  author: { fontSize: 14, color: "#757575", marginVertical: 10 },
-  description: { fontSize: 16, color: "#333" },
-  pageCount: { fontSize: 14, color: "#757575", marginVertical: 5 },
-  starContainer: { flexDirection: "row", marginVertical: 10 },
-  star: { fontSize: 18, color: "#FFD700" },
-  startButton: {
-    backgroundColor: "#FF4081",
-    borderRadius: 5,
-    padding: 10,
-    alignItems: "center",
-    marginVertical: 15,
-  },
-  startButtonText: { color: "#FFF", fontWeight: "bold", fontSize: 16 },
-  tabContainer: { flexDirection: "row", justifyContent: "space-around", marginVertical: 10 },
-  tab: { fontSize: 16, color: "#757575", padding: 5 },
-  activeTab: { fontWeight: "bold", color: "#FF4081" },
-  sectionTitle: { fontSize: 18, fontWeight: "bold", marginVertical: 10 },
-  suggestions: { marginVertical: 10 },
-  book: { marginRight: 15, alignItems: "center" },
-  bookImage: { width: 100, height: 150, borderRadius: 5 },
-  bookTitle: { fontSize: 14, fontWeight: "bold", textAlign: "center", marginVertical: 5 },
-  bookAuthor: { fontSize: 12, color: "#757575", textAlign: "center" },
+  container: { flex: 1, backgroundColor: '#fff' },
+  header: { flexDirection: 'row', alignItems: 'center', padding: 16, backgroundColor: '#F5F5F5' },
+  heading: { fontSize: 22, fontWeight: 'bold', color: '#FF4081', marginLeft: 10 },
+  image: { width: '100%', height: 450 },
+  infoContainer: { padding: 16 },
+  title: { fontSize: 24, fontWeight: 'bold', marginVertical: 4 },
+  subtitle: { fontSize: 16, color: 'gray' },
+  author: { fontSize: 16, color: 'gray', marginVertical: 2 },
+  pageCount: { fontSize: 14, color: 'gray', marginBottom: 8 },
+  starContainer: { flexDirection: 'row', marginBottom: 16 },
+  star: { fontSize: 18, color: '#FFD700' },
+  startButton: { backgroundColor: '#6200EE', paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
+  startButtonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
+  tabContainer: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 16 },
+  tab: { fontSize: 16, fontWeight: 'bold', color: 'gray' },
+  activeTab: { color: '#6200EE', borderBottomWidth: 2, borderBottomColor: '#6200EE' },
+  description: { fontSize: 14, color: '#333', lineHeight: 20, marginBottom: 16 },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginVertical: 8 },
+  suggestions: { flexDirection: 'row' },
+  book: { marginRight: 16, alignItems: 'center' },
+  bookImage: { width: 80, height: 120, borderRadius: 8 },
+  bookTitle: { fontSize: 14, fontWeight: 'bold', marginTop: 8 },
+  bookAuthor: { fontSize: 12, color: 'gray' },
 });
 
 export default Book2Detail2;
