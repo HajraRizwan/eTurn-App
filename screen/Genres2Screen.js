@@ -51,6 +51,8 @@ const Genres2Screen = ({ navigation }) => {
   const handleBookPress = (book) => {
     if (book.title === "The Hound of the Baskervilles") {
       navigation.navigate("Book2Detail1");
+    } else if (book.title === "Gone Girl") {
+      navigation.navigate("Book2Detail2");
     }
   };
 
