@@ -140,7 +140,11 @@ const MainComponent = () => {
       <Drawer.Screen name="Welcome to eTurn" component={HomeScreen} />
       <Drawer.Screen name="Feedback" component={BasicModel} />
       <Drawer.Screen
+<<<<<<< HEAD
         name="HiddenScreen"
+=======
+        name=""
+>>>>>>> d16b1910b2258df04850da7b97164c69c124485a
         component={Screen2}
         options={{ drawerLabel: () => null }} 
       />
@@ -231,5 +235,12 @@ const styles = StyleSheet.create({
   promoTitle:{ color:'#ffffff' , fontSize :18 , fontWeight :'bold' , marginBottom :5},
   
   promoText:{ color:'#ffffff' , fontSize :14 , textAlign :'center'},
+<<<<<<< HEAD
   
 });
+=======
+  
+});
+
+
+>>>>>>> d16b1910b2258df04850da7b97164c69c124485a
