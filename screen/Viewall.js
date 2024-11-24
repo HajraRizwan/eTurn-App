@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Importing FontAwesome for icons
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons for the search icon
 
 const books = [
-  { id: '1', title: 'Book 1', genre: 'Mystery', imageUrl: 'https://marketplace.canva.com/EAFXKFIDad4/1/0/1003w/canva-brown-mystery-novel-book-cover-cSu1pdo96zA.jpg' },
+  { id: '1', title: 'Book 1', genre: 'Fiction', imageUrl: 'https://marketplace.canva.com/EAFXKFIDad4/1/0/1003w/canva-brown-mystery-novel-book-cover-cSu1pdo96zA.jpg' },
   { id: '2', title: 'Book 2', genre: 'Biography', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzas4ufFOONE43jZytxemEtX22XYnLjeTw1g&s' },
   { id: '3', title: 'Book 3', genre: 'Fantasy', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrIdaPAgUXB4L8p6aPCB_RYcsnJF43c7rEJA&s' },
   { id: '4', title: 'Book 4', genre: 'Science Fiction', imageUrl: 'https://marketplace.canva.com/EAFf0E5urqk/1/0/1003w/canva-blue-and-green-surreal-fiction-book-cover-53S3IzrNxvY.jpg' },
@@ -18,17 +20,19 @@ const books = [
 const ViewAll = ({ navigation }) => {
   const [search, setSearch] = useState('');
 
+  // Filter books based on search input
   const filteredBooks = books.filter(book => 
     book.title.toLowerCase().includes(search.toLowerCase()) ||
     book.genre.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Render individual book item
   const renderItem = ({ item }) => (
     <TouchableOpacity 
       style={styles.card} 
       onPress={() => {
-        if (item.genre === 'Mystery') {
-          navigation.navigate('Genres'); // Navigate to GenresScreen for Mystery
+        if (item.genre === 'Fiction') {
+          navigation.navigate('GenresScreen', { selectedGenre: item.genre }); 
         }
       }}
     >
@@ -41,6 +45,7 @@ const ViewAll = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={24} color="#FF4081" />
@@ -48,13 +53,18 @@ const ViewAll = ({ navigation }) => {
         <Text style={styles.heading}>All Books</Text>
       </View>
 
-      <TextInput
-        style={styles.searchBar}
-        placeholder="Search by title or genre"
-        value={search}
-        onChangeText={setSearch}
-      />
-      
+      {/* Search Bar */}
+      <View style={styles.searchContainer}>
+        <Ionicons name="search" size={24} color="#333" style={styles.searchIcon} />
+        <TextInput
+          placeholder="Search Genre"
+          style={styles.searchInput}
+          value={search}
+          onChangeText={setSearch}
+        />
+      </View>
+
+      {/* Book List */}
       <FlatList
         data={filteredBooks}
         renderItem={renderItem}
@@ -67,23 +77,44 @@ const ViewAll = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 10, backgroundColor:'#fff'},
+  container: { flex: 1, paddingHorizontal: 10, backgroundColor: '#fff' },
   header: {
-    flexDirection:'row',
-    alignItems:'center',
-    paddingVertical :20,
-    paddingHorizontal :10,
-    backgroundColor:'#F5F5F5',
-    borderBottomWidth :1,
-    borderBottomColor:'#DDD',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    backgroundColor: '#F5F5F5',
+    borderBottomWidth: 1,
+    borderBottomColor: '#DDD',
   },
-  heading: { fontSize :22, fontWeight :'bold', color:'#FF4081', marginLeft :10 },
-  searchBar: { height :40, borderColor :'#ddd', borderWidth :1, borderRadius :8, paddingHorizontal :10, marginBottom :10 },
-  list: { paddingBottom :20 },
-  card: { flex :1, marginRight :10, borderRadius :10, overflow :'hidden' },
-  image: { width :'100%', height :150 },
-  genreContainer: { position :'absolute', bottom :0, left :0, right :0, backgroundColor :'rgba(0,0,0,0.6)', paddingVertical :5 },
-  genre: { color:'#fff', textAlign:'center' },
+  heading: { fontSize: 22, fontWeight: 'bold', color: '#FF4081', marginLeft: 10 },
+  searchContainer: {
+    padding: 8,
+    backgroundColor: '#f5f5f5',
+    marginVertical: 10,
+    borderRadius: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  searchInput: {
+    fontSize: 16,
+    color: '#333',
+    marginStart: 10,
+    flex: 1,
+  },
+  searchIcon: {
+    marginLeft: 10,
+  },
+  list: { paddingBottom: 20 },
+  card: {
+    flex: 1,
+    margin: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  image: { width: '100%', height: 170 },
+  genreContainer: { position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(0,0,0,0.6)', paddingVertical: 5 },
+  genre: { color: '#fff', textAlign: 'center' },
 });
 
 export default ViewAll;

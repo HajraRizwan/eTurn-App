@@ -4,12 +4,12 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { firebaseDatabase } from '../firebase'; // Import Firebase database instance
 import { ref, onValue, remove, update } from "firebase/database"; // Import Firebase methods
 
-const Fav = ({ navigation }) => {
+const Fav2= ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
 
   // Fetch favorites from Firebase Realtime Database when navigating to the screen
   useEffect(() => {
-    const favoritesRef = ref(firebaseDatabase, '/favorites'); // Updated to use 'favorites2' table
+    const favoritesRef = ref(firebaseDatabase, '/favorites2'); // Updated to use 'favorites2' table
 
     const onValueChange = onValue(favoritesRef, (snapshot) => {
       const data = snapshot.val();
@@ -29,7 +29,7 @@ const Fav = ({ navigation }) => {
       onValueChange(); // Unsubscribe from the database updates
     };
   }, []);
-
+ b   
   const handleRemove = (bookId) => {
     Alert.alert(
       "Remove from Favorites",
@@ -42,7 +42,7 @@ const Fav = ({ navigation }) => {
   };
 
   const removeFavorite = (bookId) => {
-    const favoriteRef = ref(firebaseDatabase, `/favorites/${bookId}`); // Updated to use 'favorites2' table
+    const favoriteRef = ref(firebaseDatabase, `/favorites2/${bookId}`); // Updated to use 'favorites2' table
     remove(favoriteRef)
       .then(() => {
         setFavorites(favorites.filter((book) => book.id !== bookId));
@@ -54,7 +54,7 @@ const Fav = ({ navigation }) => {
   };
 
   const handleUpdate = (bookId, newTitle) => {
-    const favoriteRef = ref(firebaseDatabase, `/favorites/${bookId}`); // Updated to use 'favorites2' table
+    const favoriteRef = ref(firebaseDatabase, `/favorites2/${bookId}`); // Updated to use 'favorites2' table
     update(favoriteRef, { title: newTitle })
       .then(() => {
         setFavorites(favorites.map((book) => (book.id === bookId ? { ...book, title: newTitle } : book)));
@@ -205,4 +205,4 @@ const styles = StyleSheet.create({
     color: "#757575", 
     marginTop: 30,
   },
-});export default Fav;
+});export default Fav2;

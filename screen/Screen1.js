@@ -1,33 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { View, Image, StyleSheet, Text, Animated } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const Screen1 = ({ navigation }) => {
-  const [fadeAnim] = useState(new Animated.Value(0)); // Initial opacity
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    // Animation for fading in the logo and text
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 2000, // duration for fade-in
-      useNativeDriver: true,
-    }).start();
+  const pages = [
+    {
+      
+      id: 1,
+      title: 'Find the book you like the most',
+      description: 'We read the best books, highlight key ideas, and create summaries for you.',
+    },
+    {
+      id: 2,
+      title: 'Give feedback',
+      description: 'Get recommendations based on your preferences and interests.',
+      image: require('./feedback.png'),
+    },
+    {
+      id: 3,
+      title: 'Track Your Favourite Books',
+      description: 'Keep track of your favorite books and what you’ve read so far.',
 
-    const timer = setTimeout(() => {
+    },
+  ];
+
+  const handleNext = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    } else {
       navigation.navigate('Screen2');
-    }, 2000); // Time to stay on the splash screen before navigating
-
-    return () => clearTimeout(timer); // Cleanup the timer when the component unmounts
-  }, [navigation, fadeAnim]);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.logoContainer, { opacity: fadeAnim }]}>
+      <View style={styles.logoContainer}>
         <Image
-          source={require('./logo.jpg')} // Ensure logo.jpg exists in the correct path
+          source={require('./logo.jpg')} // Ensure the image path is correct
           style={styles.logo}
         />
-        <Text style={styles.text}>A place to learn</Text>
-      </Animated.View>
+      </View>
+      <Text style={styles.title}>{pages[currentPage - 1].title}</Text>
+      <Text style={styles.description}>{pages[currentPage - 1].description}</Text>
+      <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+        <Text style={styles.nextButtonText}>Next</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -37,27 +55,41 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fbedf2', // Background color
+    backgroundColor: '#fbedf2', // Pink background color
+    padding: 20,
   },
   logoContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    marginBottom: 30,
   },
   logo: {
-    width: 250,  // Increased size for better visibility
-    height: 250,
-    borderRadius: 10, // Rounded corners for a modern look
-    marginBottom: 20,
-    transform: [{ scale: 1.1 }],  // Slight scaling to make the logo pop
+    width: 150, // Adjust the size as needed
+    height: 150,
+    borderRadius: 10,
   },
-  text: {
-    color: '#73004d',  // Dark purple text color
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
-    letterSpacing: 1.5,  // Adding some spacing between letters for effect
+    marginBottom: 10,
     textAlign: 'center',
-    paddingHorizontal: 30, // Padding for better spacing
+    color: 'pink', // White text color
+  },
+  description: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 30,
+    color: '#73004d', // White text color
+  },
+  nextButton: {
+    backgroundColor: '#73004d',  
+      padding: 15,
+    borderRadius: 25,
+    width: 150,
+    alignItems: 'center',
+  },
+  nextButtonText: {
+    color: 'white', // Purple text color for the button
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

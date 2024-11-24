@@ -23,6 +23,7 @@ const GenresScreen = ({ navigation }) => {
   ];
 
   useEffect(() => {
+    // Fetch book covers from Google Books API
     books.forEach((book) => {
       axios
         .get(`https://www.googleapis.com/books/v1/volumes?q=${book.title}`)
@@ -52,23 +53,51 @@ const GenresScreen = ({ navigation }) => {
     });
   }, []);
 
+  // Filter books by search text
   const filteredBooks = books.filter(
     (book) =>
       book.title.toLowerCase().includes(searchText.toLowerCase()) ||
       book.author.toLowerCase().includes(searchText.toLowerCase())
   );
 
+  // Navigate to book detail screen on image press
+  const handleBookPress = (book) => {
+    if (book.title === "The Adventures of Sherlock Holmes") {
+      navigation.navigate("BookDetailScreen", { book });
+    } else if (book.title === "Jurassic Park") {
+      navigation.navigate("JurassicScreen", { book });
+    } else if (book.title === "The Time Machine") {
+      navigation.navigate("TimeMachineDetailScreen", { book });
+    } else if (book.title === "Frankenstein") {
+      navigation.navigate("FictionBookDetailScreen", { book });
+    } else if (book.title === "Shadows of Yesterday") {
+      navigation.navigate("ShadowsScreen", { book });
+    } else if (book.title === "Beyond the Sea") {
+      navigation.navigate("BeyondSeaScreen", { book });
+    } else if (book.title === "Echoes of the Forgotten") {
+      navigation.navigate("EchoesScreen", { book });
+    } else if (book.title === "The Twilight King") {
+      navigation.navigate("TwilightKingScreen", { book });
+    } else if (book.title === "Moonlit Dreams") {
+      navigation.navigate("MoonlitDreamsScreen", { book });
+    } else {
+      alert("Details screen not available for this book.");
+    }
+  };
+
+  // Handle favorites toggle and update Firebase
   const handleFavorite = (book) => {
     if (favorites.some((fav) => fav.id === book.id)) {
       setFavorites(favorites.filter((fav) => fav.id !== book.id));
       alert(`${book.title} removed from favorites`);
-      // Remove from Firebase
       const favoriteRef = ref(firebaseDatabase, `/favorites/${book.id}`);
-      set(favoriteRef, null);
+      set(favoriteRef, null); // Remove from Firebase
     } else {
-      setFavorites([...favorites, { ...book, imageUrl: bookCovers[book.title] || "https://via.placeholder.com/150" }]);
+      setFavorites([
+        ...favorites,
+        { ...book, imageUrl: bookCovers[book.title] || "https://via.placeholder.com/150" },
+      ]);
       alert(`${book.title} added to favorites`);
-      // Add to Firebase
       const favoriteRef = ref(firebaseDatabase, `/favorites/${book.id}`);
       set(favoriteRef, { ...book, imageUrl: bookCovers[book.title] || "https://via.placeholder.com/150" });
     }
@@ -95,9 +124,7 @@ const GenresScreen = ({ navigation }) => {
         {filteredBooks.map((book) => (
           <View key={book.id} style={styles.bookCard}>
             <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("BookDetail", { book });
-              }}
+              onPress={() => handleBookPress(book)} // Navigate on image press
               style={styles.bookImageContainer}
             >
               <Image
