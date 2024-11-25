@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -47,11 +43,7 @@ const Book2Detail1 = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={24} color="#FF4081" />
         </TouchableOpacity>
-<<<<<<< HEAD
         
-=======
-        <Text style={styles.heading}>The Hound of the Baskervilles</Text>
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
       </View>
 
       <Image
@@ -92,17 +84,10 @@ const Book2Detail1 = ({ navigation }) => {
           {/* Book 1 */}
           <TouchableOpacity
             style={styles.book}
-<<<<<<< HEAD
             onPress={() => navigation.navigate("FictionBookDetailScreen", { book: { title: "Frankenstein" } })}
           >
             <Image
               source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-IVGCsDY5dfvcfqDJKlBMxrHImSAaLThbY3h12tKPfWs1FpWTJRJqSK2uWw6MPuM0AoQ&usqp=CAU' }}
-=======
-            onPress={() => navigation.navigate("FictionBookDetail", { book: { title: "Frankenstein" } })}
-          >
-            <Image
-              source={{ uri: 'https://miro.medium.com/v2/resize:fit:1024/1*iktnpmieggzfcHUS9zfpew.jpeg' }}
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
               style={styles.bookImage}
             />
             <Text style={styles.bookTitle}>Frankenstein</Text>
@@ -112,11 +97,7 @@ const Book2Detail1 = ({ navigation }) => {
           {/* Book 2 */}
           <TouchableOpacity
             style={styles.book}
-<<<<<<< HEAD
             onPress={() => navigation.navigate("JurassicScreen", { book: { title: "Jurassic Park" } })}
-=======
-            onPress={() => navigation.navigate("Jurassic", { book: { title: "Jurassic Park" } })}
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
           >
             <Image
               source={{ uri: 'https://readings.com.pk/images/books/9780345538987.jpg' }}
@@ -137,10 +118,6 @@ const Book2Detail1 = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   header: { flexDirection: 'row', alignItems: 'center', padding: 16, backgroundColor: '#F5F5F5' },
-<<<<<<< HEAD
-=======
-  heading: { fontSize: 22, fontWeight: 'bold', color: '#FF4081', marginLeft: 10 },
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
   image: { width: '100%', height: 450 },
   infoContainer: { padding: 16 },
   title: { fontSize: 24, fontWeight: 'bold', marginVertical: 4 },

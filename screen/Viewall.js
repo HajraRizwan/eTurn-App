@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Importing FontAwesome for icons
@@ -31,13 +30,8 @@ const ViewAll = ({ navigation }) => {
     <TouchableOpacity 
       style={styles.card} 
       onPress={() => {
-<<<<<<< HEAD
         if (item.genre === 'Fiction') {
           navigation.navigate('GenresScreen', { selectedGenre: item.genre }); 
-=======
-        if (item.genre === 'Mystery') {
-          navigation.navigate('Genres2Screen', { selectedGenre: item.genre }); // Navigate to Genres2Screen for Mystery
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
         }
       }}
     >

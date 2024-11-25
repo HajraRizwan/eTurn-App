@@ -7,11 +7,7 @@ const Book2Detail2 = ({ navigation }) => {
   const [selectedTab, setSelectedTab] = useState('Overview');
 
   const handleStartReading = () => {
-<<<<<<< HEAD
     WebBrowser.openBrowserAsync('https://icrrd.com/public/media/15-05-2021-082725Gone-Girl-Gillian-Flynn.pdf');
-=======
-    WebBrowser.openBrowserAsync('https://www.google.com.pk/books/edition/The_Hound_of_the_Baskervilles/3wkOAAAAYAAJ?hl=en&gbpv=1&pg=PA2&printsec=frontcover');
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
   };
 
   const renderContent = () => {
@@ -44,17 +40,10 @@ const Book2Detail2 = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-<<<<<<< HEAD
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={20} color="#333" />
-=======
-      {/* Header with Back Button */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" size={24} color="#FF4081" />
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
         </TouchableOpacity>
         <Text style={styles.heading}>Gone Girl</Text>
       </View>
@@ -97,28 +86,17 @@ const Book2Detail2 = ({ navigation }) => {
 
         {/* Conditionally Rendered Content */}
         {renderContent()}
-<<<<<<< HEAD
 
         {/* You May Also Like Section */}
-=======
-{/* You May Also Like Section */}
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
         <Text style={styles.sectionTitle}>You May Also Like</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.suggestions}>
           {/* Book 1 */}
           <TouchableOpacity
             style={styles.book}
-<<<<<<< HEAD
             onPress={() => navigation.navigate("FictionBookDetailScreen", { book: { title: "Frankenstein" } })}
           >
             <Image
               source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-IVGCsDY5dfvcfqDJKlBMxrHImSAaLThbY3h12tKPfWs1FpWTJRJqSK2uWw6MPuM0AoQ&usqp=CAU' }}
-=======
-            onPress={() => navigation.navigate("FictionBookDetail", { book: { title: "Frankenstein" } })}
-          >
-            <Image
-              source={{ uri: 'https://miro.medium.com/v2/resize:fit:1024/1*iktnpmieggzfcHUS9zfpew.jpeg' }}
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
               style={styles.bookImage}
             />
             <Text style={styles.bookTitle}>Frankenstein</Text>
@@ -128,11 +106,7 @@ const Book2Detail2 = ({ navigation }) => {
           {/* Book 2 */}
           <TouchableOpacity
             style={styles.book}
-<<<<<<< HEAD
             onPress={() => navigation.navigate("JurassicScreen", { book: { title: "Jurassic Park" } })}
-=======
-            onPress={() => navigation.navigate("Jurassic", { book: { title: "Jurassic Park" } })}
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
           >
             <Image
               source={{ uri: 'https://readings.com.pk/images/books/9780345538987.jpg' }}
@@ -141,15 +115,8 @@ const Book2Detail2 = ({ navigation }) => {
             <Text style={styles.bookTitle}>Jurassic Park</Text>
             <Text style={styles.bookAuthor}>Michael Crichton</Text>
           </TouchableOpacity>
-<<<<<<< HEAD
         </ScrollView>
       </View>
-=======
-
-        </ScrollView>
-      </View>
-
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
     </ScrollView>
   );
 };
@@ -158,11 +125,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   header: { flexDirection: 'row', alignItems: 'center', padding: 16, backgroundColor: '#F5F5F5' },
   heading: { fontSize: 22, fontWeight: 'bold', color: '#FF4081', marginLeft: 10 },
-<<<<<<< HEAD
   image: { width: '100%', height: 300 },
-=======
-  image: { width: '100%', height: 450 },
->>>>>>> d16b1910b2258df04850da7b97164c69c124485a
   infoContainer: { padding: 16 },
   title: { fontSize: 24, fontWeight: 'bold', marginVertical: 4 },
   subtitle: { fontSize: 16, color: 'gray' },
