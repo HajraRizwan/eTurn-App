@@ -102,10 +102,8 @@ const MainComponent = () => {
   const DrawerContent = ({ navigation }) => (
     <View style={styles.drawerContent}>
       <Image
-        source={{
-          uri: 'https://t4.ftcdn.net/jpg/02/70/85/87/360_F_270858704_omv8jdOK8QXoYKhaOJ5JuVojkDZfaI7E.jpg',
-        }}
-        style={styles.drawerLogo}
+        source={require('./logo.jpg')}
+      style={styles.drawerLogo}
       />
       <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Welcome to eTurn')}>
         <Ionicons name="home" size={22} color="#000" />
@@ -140,7 +138,7 @@ const MainComponent = () => {
       <Drawer.Screen name="Welcome to eTurn" component={HomeScreen} />
       <Drawer.Screen name="Feedback" component={BasicModel} />
       <Drawer.Screen
-        name=""
+        name="HiddenScreen"
         component={Screen2}
         options={{ drawerLabel: () => null }} 
       />
@@ -200,12 +198,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   drawerLogo: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     marginTop: 30,
     marginBottom: 20,
     alignSelf: 'center', 
-    borderRadius: 60,
+    borderRadius: 10,
   },
   
   drawerText: {

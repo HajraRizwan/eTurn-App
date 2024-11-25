@@ -21,4 +21,4 @@ const auth = getAuth(app); // Create the auth instance
 
 // Export the instances for use in other parts of the app
 export { auth, firebaseDatabase};
-export default app
+export default app;
