@@ -16,6 +16,7 @@ import Book2Detail1 from './screen/Mystrydet1';
 import Book2Detail2 from './screen/gonegirl';
 import Fav2 from './screen/Fav2';
 import JurassicScreen from './screen/JurassicScreen';
+import BasicModel from './screen/BasicModel';
 
 
 const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Genres" component={GenresScreen} />
       <Drawer.Screen name="Fav" component={FavScreen} />
       <Drawer.Screen name="ViewAll" component={ViewAll} />
+      <Drawer.Screen name="BasicModel" component={BasicModel} />
     </Drawer.Navigator>
   );
 };
