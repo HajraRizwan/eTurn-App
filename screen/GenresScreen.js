@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, FlatList, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import { firebaseDatabase } from "../firebase"; // Import Firebase methods
 import { ref, set, get } from "firebase/database";
 
 const GenresScreen = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [bookCovers, setBookCovers] = useState({});
 
   const books = [
@@ -54,12 +55,12 @@ const GenresScreen = ({ navigation }) => {
   }, []);
 
   // Filter books by search text
-  const filteredBooks = books.filter(
-    (book) =>
-      book.title.toLowerCase().includes(searchText.toLowerCase()) ||
-      book.author.toLowerCase().includes(searchText.toLowerCase())
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    book.author.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Navigate to book detail screen on image press
   // Navigate to book detail screen on image press
   const handleBookPress = (book) => {
     if (book.title === "The Adventures of Sherlock Holmes") {
@@ -84,6 +85,7 @@ const GenresScreen = ({ navigation }) => {
       alert("Details screen not available for this book.");
     }
   };
+  
 
   // Handle favorites toggle and update Firebase
   const handleFavorite = (book) => {
@@ -103,21 +105,43 @@ const GenresScreen = ({ navigation }) => {
     }
   };
 
+  // Update the favorites list when a book is removed from the favorites screen
+  const updateFavorites = (bookId) => {
+    setFavorites((prevFavorites) => prevFavorites.filter((book) => book.id !== bookId));
+  };
+
+  const renderFavoriteItem = ({ item }) => (
+    <View style={styles.bookCard}>
+      <Text style={styles.bookTitle}>{item.title}</Text>
+      <TouchableOpacity onPress={() => handleFavorite(item)}>
+        <Icon
+          name={favorites.some((fav) => fav.id === item.id) ? "heart" : "heart-o"}
+          size={20}
+          color={favorites.some((fav) => fav.id === item.id) ? "#FF4081" : "#757575"}
+        />
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Icon name="arrow-left" size={20} color="#FF4081" />
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()} // Navigate back
+        >
+          <Icon name="arrow-left" size={24} color="#FFF" />
         </TouchableOpacity>
         <Text style={styles.heading}>Fiction Books</Text>
       </View>
       <View style={styles.searchContainer}>
+        <Ionicons name="search" size={24} color="#333" style={styles.searchIcon} />
         <TextInput
+          placeholder="Search books"
           style={styles.searchInput}
-          placeholder="Search books..."
-          placeholderTextColor="#9E9E9E"
-          value={searchText}
-          onChangeText={setSearchText}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
         />
       </View>
       <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContent}>
@@ -149,25 +173,65 @@ const GenresScreen = ({ navigation }) => {
       </ScrollView>
       <TouchableOpacity
         style={styles.viewFavButton}
-        onPress={() => navigation.navigate("Fav", { favorites })}
+        onPress={() => navigation.navigate("Fav", { updateFavorites })}
       >
         <Text style={styles.viewFavText}>View Favorites</Text>
       </TouchableOpacity>
+      
     </View>
   );
 };
 
+
+
+
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FFFFFF", marginTop: 40 },
-  header: { flexDirection: "row", alignItems: "center", padding: 20, backgroundColor: "#F5F5F5" },
-  heading: { fontSize: 24, fontWeight: "bold", color: "#FF4081", marginLeft: 10 },
-  searchContainer: { margin: 10 },
-  searchInput: {
-    height: 40,
-    backgroundColor: "#FFF",
-    borderRadius: 8,
-    borderWidth: 1,
-    paddingHorizontal: 10,
+  container: { flex: 1, backgroundColor: "#FFFFFF" },
+  // Header styling
+  header: {
+    flexDirection: "row", // Align items horizontally
+    alignItems: "center", // Center vertically
+    backgroundColor: "#FF4081",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    elevation: 5,
+    width:550,
+    marginStart:0,
+  },
+
+  // Back button
+  backButton: {
+    marginRight: 20, // Add space between the button and text
+    padding: 10,
+    borderRadius: 20,
+    marginTop: 10,
+  },
+
+  // Header text
+  heading: { 
+    fontSize: 25, 
+    fontWeight: "bold", 
+    color: "#FFF",
+    marginTop: 10,
+  },
+  searchContainer: { 
+    padding: 2, 
+    backgroundColor: '#f5f5f5', 
+    marginTop: 10, 
+    borderRadius: 25, 
+    flexDirection: 'row', 
+    alignItems: 'center' ,
+    marginStart:20,
+    marginEnd:20,
+  },
+  searchInput: { 
+    fontSize: 16, 
+    color: '#333',
+    marginStart: 10, 
+    flex: 1,
+  },
+  searchIcon: { 
+    marginLeft: 10, 
   },
   scrollContainer: { flex: 1 },
   scrollContent: { alignItems: "center" },
@@ -189,7 +253,7 @@ const styles = StyleSheet.create({
   favoriteIconContainer: { marginLeft: 10 },
   iconFilled: { color: "#FF4081" },
   iconEmpty: { color: "#757575" },
-  viewFavButton: { backgroundColor: "#FF4081", padding: 10, borderRadius: 8, margin: 10 },
+  viewFavButton: { backgroundColor: "#73004d", padding: 10, borderRadius: 8, margin: 10 },
   viewFavText: { color: "#FFF", textAlign: "center", fontWeight: "bold" },
 });
 
