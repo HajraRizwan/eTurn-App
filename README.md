@@ -7,6 +7,9 @@ eTurn App is a platform where users can explore and read different novels accord
 - **User-Friendly Interface**: Create an account, choose your favorite genre, select a book, and start reading.
 - **Book Overview**: Get detailed descriptions, reviews, and summaries of books.
 - **Feedback & Suggestions**: Share your thoughts, suggest improvements, or request new books or genres to be added.
+- 
+### Git Hub Repo Link:
+- **https://github.com/HajraRizwan/eTurn-App.git**
 
 ---
 ## Group Members:
