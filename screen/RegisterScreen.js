@@ -27,11 +27,11 @@ const RegisterScreen = ({ navigation }) => {
       navigation.navigate('Login');
     } catch (error) {
       if (error.code === 'auth/invalid-email') {
-        Alert.alert('Error', 'The email address is invalid.');
+        Alert.alert('Error', 'The email address is invalid as @ is missing.');
       } else if (error.code === 'auth/email-already-in-use') {
         Alert.alert('Error', 'Email is already in use.');
       } else {
-        Alert.alert('Error', 'Sign up failed. Please try again.');
+        Alert.alert('Error', 'Sign up failed. Please make sure that length of password should be atleast 6.');
       }
     }
   };

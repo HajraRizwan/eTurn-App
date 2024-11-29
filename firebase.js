@@ -2,18 +2,24 @@ import { initializeApp } from 'firebase/app'; // Import Firebase App initializer
 import { getAuth } from 'firebase/auth'; // Import Firebase Auth module for authentication
 import { getDatabase } from 'firebase/database'; // Import Firebase Database
 
-// Your Firebase project configuration
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCLk5dIAnaWlVc51v7J8sjNDBbOocwoCW0",
-  authDomain: "madproject-63fb1.firebaseapp.com",
-  projectId: "madproject-63fb1",
-  storageBucket: "madproject-63fb1.firebasestorage.app",
-  messagingSenderId: "868560592088",
-  appId: "1:868560592088:web:10bb3670da537cf8f58bad"
+  apiKey: "AIzaSyCNnkkA4zYJCpMRGVKHynRyo0WQb8avtsI",
+  authDomain: "madproject-445c7.firebaseapp.com",
+  databaseURL: "https://madproject-445c7-default-rtdb.firebaseio.com",
+  projectId: "madproject-445c7",
+  storageBucket: "madproject-445c7.firebasestorage.app",
+  messagingSenderId: "813370704837",
+  appId: "1:813370704837:web:eccc241e9d072f368941ac"
 };
 
-// Initialize Firebase app with the provided config
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+
 
 // Initialize Firebase services
 const firebaseDatabase = getDatabase(app); // Create the database instance

@@ -47,12 +47,13 @@ const MainComponent = () => {
   );
 
   const HomeScreen = ({ navigation }) => (
+    <>
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <View style={styles.searchContainer}>
           <Ionicons name="search" size={24} color="#333" style={styles.searchIcon} />
           <TextInput
-            placeholder="Search books"
+            placeholder="Search genere"
             style={styles.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
@@ -96,6 +97,11 @@ const MainComponent = () => {
         </View>
       </View>
     </ScrollView>
+    <View style={styles.promoBanner}>
+    <Text style={styles.promoTitle}>Book Sale Coming Soon!</Text>
+    <Text style={styles.promoText}>Stay tuned for exclusive discounts on bestsellers and more.</Text>
+  </View>
+  </>
   );
 
 
@@ -106,15 +112,15 @@ const MainComponent = () => {
       style={styles.drawerLogo}
       />
       <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Welcome to eTurn')}>
-        <Ionicons name="home" size={22} color="#000" />
+        <Ionicons name="home" size={22} color="#FF4081" marginLeft={10}/>
         <Text style={styles.drawerText}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('BasicModel')}>
-        <Ionicons name="chatbubble-ellipses" size={22} color="#000" />
+        <Ionicons name="chatbubble-ellipses" size={22} color="#FF4081" marginLeft={10} />
         <Text style={styles.drawerText}>Feedback</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Screen2')}>
-        <Ionicons name="log-out" size={22} color="#000" />
+        <Ionicons name="log-out" size={22} color="#FF4081" marginLeft={10}/>
         <Text style={styles.drawerText}>Logout</Text>
       </TouchableOpacity>
     </View>
@@ -136,6 +142,7 @@ const MainComponent = () => {
       }}
     >
       <Drawer.Screen name="Welcome to eTurn" component={HomeScreen} />
+
       <Drawer.Screen name="Feedback" component={BasicModel} />
       <Drawer.Screen
         name="HiddenScreen"
@@ -160,12 +167,12 @@ const styles = StyleSheet.create({
   scrollContainer: { flexGrow: 1, backgroundColor: '#ffffff' },
   container: { flex: 1, paddingHorizontal: 16, paddingBottom: 20 },
   searchContainer: { 
-    padding: 8, 
+    padding: 2, 
     backgroundColor: '#f5f5f5', 
     marginTop: 10, 
     borderRadius: 25, 
     flexDirection: 'row', 
-    alignItems: 'center' 
+    alignItems: 'center' ,
   },
   searchInput: { 
     fontSize: 16, 
@@ -177,7 +184,7 @@ const styles = StyleSheet.create({
     marginLeft: 10, 
   },
   featuredContainer: { alignItems: 'center', marginVertical: 10 },
-  featuredImage: { width: '160%', height: 320, borderRadius: 8 },
+  featuredImage: { width: '160%', height: 280, borderRadius: 8 },
   featuredText: { position: 'absolute', fontSize: 20, fontWeight: 'bold', color: '#ffffff', top: 16, left: 16, backgroundColor: 'rgba(0, 0, 0, 0.4)', padding: 8, borderRadius: 5 },
   genresHeader: {
   flexDirection: 'row',
@@ -187,11 +194,11 @@ const styles = StyleSheet.create({
 },
   genresContainer: { marginBottom: 3 , marginTop: 6},
   sectionTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 8  },
-  viewMore:{ color:'#007bff' , fontSize :16},
+  viewMore:{ color:'#FF4081' , fontSize :16},
   genreWrapper: { marginRight: 16, alignItems: 'center' },
   genreImage: { width: 130, height: 180, borderRadius: 8 },
   genreText: { fontSize: 14, fontWeight: 'bold', textAlign: 'center', marginTop: 8 },
-
+  
 
   drawerContent: {
     flex: 1,
@@ -221,8 +228,8 @@ const styles = StyleSheet.create({
 
 
   promoBanner:{ position:'absolute', bottom :0 , left :0 , right :0 , backgroundColor:'#FF4081',
-    paddingVertical :15 , paddingHorizontal :10 , alignItems:'center',
-    borderTopLeftRadius :12 , borderTopRightRadius :12 ,
+    paddingVertical :7 , paddingHorizontal :10 , alignItems:'center',
+    borderTopLeftRadius :12 , borderTopRightRadius :18 ,
     shadowColor:'#000' , shadowOffset:{ width :0 , height :-2 } ,
     shadowOpacity :0.3 , shadowRadius :5 , elevation :5},
     

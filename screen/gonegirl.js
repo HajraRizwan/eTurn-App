@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   pageCount: { fontSize: 14, color: 'gray', marginBottom: 8 },
   starContainer: { flexDirection: 'row', marginBottom: 16 },
   star: { fontSize: 18, color: '#FFD700' },
-  startButton: { backgroundColor: '#6200EE', paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
+  startButton: { backgroundColor: '#73004d', paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
   startButtonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
   tabContainer: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 16 },
   tab: { fontSize: 16, fontWeight: 'bold', color: 'gray' },

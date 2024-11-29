@@ -6,7 +6,7 @@ const Screen2 = ({ navigation }) => {
     <ImageBackground
       source={require('./library.jpg')} // Use a themed image related to books
       style={styles.container}
-      imageStyle={{ opacity: 0.4 }} // Apply 40% opacity to the background image for readability
+      imageStyle={{ opacity: 0.5 }} // Apply 40% opacity to the background image for readability
     >
       {/* Title and Tagline positioned just above the logo */}
       <View style={styles.header}>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 250,
-    height: 250,
+    height: 280,
     zIndex: 1, // Ensure the logo appears above other elements
     marginTop: 250, // Center the logo vertically
   },
@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
     marginBottom: 70, // Ensure buttons are above other elements
   },
   button: {
-    paddingVertical: 18,
+    paddingVertical: 12,
     borderRadius: 10,
-    width: '100%', // Increase button width to full screen width
+    width: '80%', // Increase button width to full screen width
     marginBottom: 10, // Space between buttons
     alignItems: 'center',
   },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   lightButton: {
     backgroundColor: '#fbedf2', // Light background for Sign Up button
-    borderWidth: 2,
+    borderWidth: 1,
   },
   buttonText: {
     fontSize: 18,

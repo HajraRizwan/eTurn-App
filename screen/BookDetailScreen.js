@@ -44,11 +44,10 @@ const BookDetailScreen = ({ route, navigation }) => {
     <ScrollView style={styles.container}>
       {/* Header with Back Button */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Icon name="arrow-left" size={24} color="#FF4081" />
-        </TouchableOpacity>
-        <Text style={styles.heading}></Text>
-      </View>
+  <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+    <Icon name="arrow-left" size={24} color="#FFFFFF" />
+  </TouchableOpacity>
+</View>
 
       {/* Top Image */}
       <Image
@@ -122,13 +121,21 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#F5F5F5',
-    marginTop: 40,
+    backgroundColor: '#FF4081',
+    paddingVertical: 5,
+    paddingHorizontal: 16,
+    elevation: 2,
   },
-  backButton: { marginRight: 16 },
-  heading: { fontSize: 22, fontWeight: 'bold', color: '#FF4081' },
-  image: { width: '100%', height: 450 },
+  
+  backButton: {
+    marginRight: 20, // Add space between the button and text
+    padding: 10,
+    borderRadius: 20,
+    marginTop: 10,
+  
+  },
+  
+  image: { width: '100%', height: 350 , marginTop:5},
   infoContainer: { padding: 16 },
   title: { fontSize: 24, fontWeight: 'bold', marginVertical: 4 },
   subtitle: { fontSize: 16, color: 'gray' },
@@ -136,12 +143,12 @@ const styles = StyleSheet.create({
   pageCount: { fontSize: 14, color: 'gray', marginBottom: 8 },
   starContainer: { flexDirection: 'row', marginBottom: 16 },
   star: { fontSize: 18, color: '#FFD700' },
-  startButton: { backgroundColor: '#6200EE', paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
+  startButton: { backgroundColor: '#73004d', paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
   startButtonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
   tabContainer: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 16 },
   tab: { fontSize: 16, fontWeight: 'bold', color: 'gray' },
-  activeTab: { color: '#6200EE', borderBottomWidth: 2, borderBottomColor: '#6200EE' },
-  description: { fontSize: 14, color: '#333', lineHeight: 20, marginBottom: 16 },
+  activeTab: { color: '#73004d', borderBottomWidth: 2, borderBottomColor: '#73004d' },
+  description: { fontSize: 14, color: '#333', lineHeight: 20, marginBottom: 8 },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginVertical: 8 },
   suggestions: { flexDirection: 'row' },
   book: { marginRight: 16, alignItems: 'center' },

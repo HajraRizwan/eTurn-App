@@ -46,10 +46,13 @@ const ViewAll = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" size={24} color="#FF4081" />
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()} // Navigate back
+        >
+          <Icon name="arrow-left" size={24} color="#FFF" />
         </TouchableOpacity>
-        <Text style={styles.heading}>All Books</Text>
+        <Text style={styles.heading}>All Genere</Text>
       </View>
 
       {/* Search Bar */}
@@ -76,17 +79,34 @@ const ViewAll = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 10, backgroundColor: '#fff' },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    backgroundColor: '#F5F5F5',
-    borderBottomWidth: 1,
-    borderBottomColor: '#DDD',
-  },
-  heading: { fontSize: 22, fontWeight: 'bold', color: '#FF4081', marginLeft: 10 },
+  container: { flex: 1, paddingHorizontal: 1, backgroundColor: '#fff' },
+    // Header styling
+    header: {
+      flexDirection: "row", // Align items horizontally
+      alignItems: "center", // Center vertically
+      backgroundColor: "#FF4081",
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      elevation: 5,
+      width:550,
+      marginStart:0,
+    },
+  
+    // Back button
+    backButton: {
+      marginRight: 20, // Add space between the button and text
+      padding: 10,
+      borderRadius: 20,
+      marginTop: 10,
+    },
+  
+    // Header text
+    heading: { 
+      fontSize: 25, 
+      fontWeight: "bold", 
+      color: "#FFF",
+      marginTop: 10,
+    },
   searchContainer: {
     padding: 8,
     backgroundColor: '#f5f5f5',
