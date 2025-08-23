@@ -19,6 +19,9 @@ import TimeMachineDetailScreen from'./screen/TimeMachineDetailScreen'
 import FictionBookDetailScreen from'./screen/FictionBookDetailScreen'
 import BasicModel from'./screen/BasicModel'
 import Genere2Screen from'./screen/Genere2Screen'
+import BillsScreen from'./screen/BillsScreen'
+import PayBillScreen from'./screen/PayBillScreen'
+import PaymentHistoryScreen from'./screen/PaymentHistoryScreen'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,7 +31,8 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Genres" component={GenresScreen} />
       <Drawer.Screen name="Genere2" component={Genere2Screen}/>
-     <Drawer.Screen name="Favorites" component={FavScreen} />
+      <Drawer.Screen name="Favorites" component={FavScreen} />
+      <Drawer.Screen name="Bills" component={BillsScreen} />
     </Drawer.Navigator>
   );
 };
@@ -57,6 +61,9 @@ const App = () => {
         <Stack.Screen name="TimeMachineDetailScreen" component={TimeMachineDetailScreen} />
         <Stack.Screen name="FictionBookDetailScreen" component={FictionBookDetailScreen} />
         <Stack.Screen name="BasicModel" component={BasicModel} />
+        <Stack.Screen name="Bills" component={BillsScreen} />
+        <Stack.Screen name="PayBill" component={PayBillScreen} />
+        <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
